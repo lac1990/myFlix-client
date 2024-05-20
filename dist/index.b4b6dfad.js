@@ -27376,7 +27376,7 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies] = (0, _react.useState)([
+    const [movies, setMovies] = (0, _react.useState)([
         {
             id: 1,
             Title: "Pulp Fiction",
@@ -27452,7 +27452,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "I3pQMK6UAkTpz92abNFHfqoMZhw=");
+_s(MainView, "EGTBoInuOeqXKQ1zrqpZVaufj9Y=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
