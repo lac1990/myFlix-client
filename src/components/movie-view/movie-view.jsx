@@ -1,3 +1,4 @@
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
@@ -30,3 +31,17 @@ export const MovieView = ({ movie, onBackClick }) => {
   );
 };
 
+/*MovieView.proptypes = {
+  movie: PropTypes.shape({
+      image: PropTypes.string,
+      title: PropTypes.string,
+      director: PropTypes.shape({
+          name:PropTypes.string,
+          bio: PropTypes.string,
+          birthday: PropTypes.string,
+          deathday: PropTypes.string
+      }).isRequired,
+      description: PropTypes.string,
+      genre: PropTypes.string,
+  }).isRequired
+}; */

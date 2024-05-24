@@ -1,11 +1,24 @@
-export const MovieCard = ({ movie, onMovieClick }) => {
-  return (
-    <div
-      onClick={() => {
+//check movieData to see if its movie or moviedata//
+import PropTypes from "prop-types";
+
+export const MovieCard = ({movie, onMovieClick}) => {
+    return ( 
+    <div onClick ={() => {
         onMovieClick(movie);
-      }}
+    }}
     >
-      {movie.Title}
+        {movie.title}
     </div>
-  );
+    );
 };
+MovieCard.proptypes = {
+  movie: PropTypes.shape({
+      title: PropTypes.string,
+      imageurl: PropTypes.string,
+      director: PropTypes.string,
+      description: PropTypes.string,
+      genre: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      featured: PropTypes.bool
+  }).isRequired
+};   
