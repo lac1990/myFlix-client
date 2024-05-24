@@ -19,29 +19,15 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>{movie.Genre}</span>
       </div>
       <div>
-        <span>Director:</span>
+        <span>Director: </span>
         <span>{movie.Director}</span>
       </div>
       <div>
-        <span>Actors:</span>
-        <span>{movie.Actors}</span>
+          <span>Featured: </span>
+          <span>{movie.featured ? "True" : "False"}</span>
       </div>
       <button onClick={onBackClick}>Back</button>
     </div>
   );
 };
 
-/*MovieView.proptypes = {
-  movie: PropTypes.shape({
-      image: PropTypes.string,
-      title: PropTypes.string,
-      director: PropTypes.shape({
-          name:PropTypes.string,
-          bio: PropTypes.string,
-          birthday: PropTypes.string,
-          deathday: PropTypes.string
-      }).isRequired,
-      description: PropTypes.string,
-      genre: PropTypes.string,
-  }).isRequired
-}; */
