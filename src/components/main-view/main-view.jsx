@@ -5,38 +5,40 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
 
+ 
   useEffect(() => {
     fetch("https://movie-api-main-3.onrender.com/movies")
-      .then((response) => response.json())
-      .then((movies) => {
-        const moviesApi = movies.map((movie) => {
-          return {
-            id: movie._id,
-            title: movie.title,
-            description: movie.description,
-            imagePath: movie.imagePath,
-            year: movie.year,
-            genre: movie.genre,
-            director: movie.director,
-            featured: movie.featured,
-          };
-        });
-        setMovies(moviesApi);
+    .then((response) => response.json())
+    .then((data) => {
+      const moviesFromApi = data.map((data) => {
+        return {
+          id: data._id,
+          title: data.title,
+          image: data.imageUrl,
+          description: data.description,
+          genre: data.genre.name,
+          director: data.director.name,
+          featured: data.featured
+        };
       });
-  }, []);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
+      setMovies(moviesFromApi);
+    });
+}, []);
+
+const [selectedMovie, setSelectedMovie] = useState(null);
   if (selectedMovie) {
+    
     // console.log(selectedMovie);
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
     );
   }
+
   if (movies.length === 0) {
     return <div>The list is empty!</div>;
   }
+
   return (
     <div>
       {movies.map((movie) => (
