@@ -17,27 +17,27 @@ export const MainView = () => {
           
       }, []);
 
-  if (selectedMovie) {
-    return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
-  }
-
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-console.log(movies);
-  return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+      if (selectedMovie) {
+        return (
+          <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        );
+      }
+    
+      if (movies.length === 0) {
+        return <div>The list is empty!</div>;
+      }
+    console.log(movies);
+      return (
+        <div>
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))}
+        </div>
+      );
+    };

@@ -1,23 +1,22 @@
-import PropTypes from "prop-types";
-export const MovieCard = ({ movies, onMovieClick }) => {
-  return (
-    <div
-      onClick={() => {
-        onMovieClick(movies);
-      }}
-    >
-      {movies.Title}
-    </div>
-  );
-};
-MovieCard.propTypes = {
-  movies: PropTypes.shape({
-    title: PropTypes.string,
-    image: PropTypes.string,
-    description: PropTypes.string,
-    genre: PropTypes.string,
-    director: PropTypes.string,
-    featured: PropTypes.bool,
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
-};
+import PropType from "prop-types";
+export const MovieCard = ({ movie, onMovieClick }) => {
+    return (
+      <div
+        onClick={() => {
+          onMovieClick(movie);
+        }}
+      >
+        {movie.Title}
+      </div>
+    );
+  };
+  MovieCard.propTypes = {
+    movie: PropType.shape({
+      Title: PropType.string.isRequired,
+      Description: PropType.string.isRequired,
+      Genre: PropType.string.isRequired,
+      Director: PropType.string.isRequired,
+      ImagePath: PropType.string.isRequired, 
+    
+    }).isRequired
+  };
