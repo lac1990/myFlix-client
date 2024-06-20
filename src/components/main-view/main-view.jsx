@@ -7,6 +7,7 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         fetch("https://movie-api-main-3.onrender.com/movies")
@@ -16,7 +17,11 @@ export const MainView = () => {
           .catch(e=>console.log(e))
           
       }, []);
-
+      
+      if (!user) {
+        return <LoginView onLoggedIn={(user) => setUser(user)} />;
+      }
+      
       if (selectedMovie) {
         return (
           <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
