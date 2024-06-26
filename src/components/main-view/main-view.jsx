@@ -5,11 +5,12 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../Login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
-
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
+
 
     useEffect(() => {
         fetch("https://movie-api-main-3.onrender.com/movies")
@@ -19,10 +20,6 @@ export const MainView = () => {
           .catch(e=>console.log(e))
           
       }, []);
-      
-      if (!user) {
-        return <LoginView onLoggedIn={(user) => setUser(user)} />;
-      }
       if (!user) {
         return (
           <>
@@ -34,7 +31,8 @@ export const MainView = () => {
             <SignupView />
           </>
         );
-      } 
+      }
+    
       if (selectedMovie) {
         return (
           <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
@@ -44,7 +42,7 @@ export const MainView = () => {
       if (movies.length === 0) {
         return <div>The list is empty!</div>;
       }
-    console.log(movies);
+    //console.log(movies);
       return (
         <div>
           {movies.map((movie) => (
@@ -57,12 +55,12 @@ export const MainView = () => {
             />
           ))}
           <button
-        onClick={() => {
-          setUser(null);
-        }}
-        >
-        Logout
-        </button>
+            onClick={() => {
+              setUser(null);
+            }}
+          >
+            Logout
+          </button>
         </div>
       );
     };
