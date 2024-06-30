@@ -12,14 +12,31 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+   
 
 
     useEffect(() => {
         fetch("https://movie-api-main-3.onrender.com/movies")
           .then((response) => response.json())
-          .then(movies=>{
-          setMovies(movies)})
+          .then(data=>{
+            const moviesFromApi = data.map((movie) => {
+              return {
+                _id: movie._id,
+            ImageUrl: movie.ImageUrl,
+            Title: movie.Title,
+            Description: movie.Description,
+            Genre: [{
+              name: movie.Genre.name,
+              description: movie.Genre.description
+            }],
+            Director: [{
+              name: movie.Director.name,
+              bio: movie.Director.bio,
+              birthyear: movie.Director.birthyear,
+              deathyear: movie.Director.deathyear
+            }]};
+            });
+          setMovies(moviesFromApi)})
           .catch(e=>console.log(e))
           
       }, []);
@@ -33,7 +50,7 @@ export const MainView = () => {
         </Col>
       ) : selectedMovie ? (
         <Col md={8}>
-          <MovieViewV
+          <MovieView
             style={{ border: "1px solid green" }}
             movie={selectedMovie}
             onBackClick={() => setSelectedMovie(null)}
@@ -44,10 +61,10 @@ export const MainView = () => {
       ) : (
         <>
           {movies.map((movie) => (
-            <Col className="mb-4" key={movie.id} md={3}>
+            <Col className="mb-4" key={movie.Title} md={3}>
               <MovieCard
                 movie={movie}
-                onBookClick={(newSelectedMovie) => {
+                onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
                 }}
               />
