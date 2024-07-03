@@ -3,37 +3,40 @@ export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div className="movie-view">
     <div >
-      <img src={movie.ImageUrl} key={movie.ImageUrl} />
+      <img src="holder.png" key={movie.ImageUrl} />
     </div>
     <div>
-      <span>Title:</span>
+      <span></span>
       <span className="movie-title" key={movie.Title}>{movie.Title}</span>
     </div>
     <div>
       <span>Description: </span>
+      <br></br>
       <div className="movie-description" key={movie.Description}>
         {movie.Description}
       </div>
     </div>
     <div>
-      <span>Genre: </span>
+      <br></br>
       <span className="movie-genre">
-        {movie.Genre.map(genre => (
-          <div key={movie._id}>
-            <span>{genre.name}</span>
-            <p>{genre.description}</p>
+        {movie.Genre.map(Genre => (
+          <div key={movie.Genre}>
+            <span>Genre: </span><span>{Genre.name}</span>
+            <p>{Genre.description}</p>
           </div>
         ))}</span>
     </div>
     <div>
-      <span>Director: </span>
+      <br></br>
       <div className="movie-director">
         {movie.Director.map(director => (
           <div key={director.name}>
-            <span>{director.name}</span>
-            <span>{director.bio}</span>
-            <span>{director.birthyear}</span>
-            <span>{director.description}</span>
+            <span>Director: </span><span>{director.name}</span>
+            <br></br>
+            <span>Bio: </span><span>{director.bio}</span>
+            <br></br>
+            <span>Born: </span><span>{director.birthyear}</span>
+          
           </div>
 
         ))}</div>

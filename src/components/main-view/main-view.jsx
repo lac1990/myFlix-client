@@ -22,18 +22,18 @@ export const MainView = () => {
             const moviesFromApi = data.map((movie) => {
               return {
                 _id: movie._id,
-            ImageUrl: movie.ImageUrl,
+            ImagePath: movie.ImagePath,
             Title: movie.Title,
             Description: movie.Description,
             Genre: [{
-              name: movie.Genre.name,
-              description: movie.Genre.description
+              name: movie.Genre.Name,
+              description: movie.Genre.Description
             }],
             Director: [{
-              name: movie.Director.name,
-              bio: movie.Director.bio,
-              birthyear: movie.Director.birthyear,
-              deathyear: movie.Director.deathyear
+              name: movie.Director.Name,
+              bio: movie.Director.Bio,
+              birthyear: movie.Director.Birth,
+              description: movie.Director.Description,
             }]};
             });
           setMovies(moviesFromApi)})

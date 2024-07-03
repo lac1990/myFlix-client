@@ -1,11 +1,29 @@
 .back-button {
     padding: 4px 12px 4px 12px;
     color: whitesmoke;
-    background-color: dodgerblue;
+    background-color: rgb(14, 58, 103);
     border: none;
     border-radius: 4px;
   }
   
   img {
     width: 100%;
+  }
+  .movie-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    font-weight: Bold;
+
+  }
+  .movie-genre {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+  }
+  .movie-director {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+  }
+  .movie-description {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
   }
