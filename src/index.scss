@@ -1,0 +1,13 @@
+$color: steelblue;
+
+.my-flix {
+  color: $color;
+}
+
+.justify-content-md-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; // Horizontal centering
+  align-items: center; // Vertical centering
+  margin: 10px;
+}
