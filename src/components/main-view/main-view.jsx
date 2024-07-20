@@ -5,6 +5,7 @@ import { LoginView } from "../Login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { FavoriteMovies } from "../favorite-movies/favorite-movies";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -15,7 +16,7 @@ export const MainView = () => {
 
   const handleUpdate = (e) => {
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUser({ ...user, [Username]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ export const MainView = () => {
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
           return {
-            //_id: movie._id,
+            _id: movie.key,
             ImagePath: movie.ImagePath,
             Title: movie.Title,
             Description: movie.Description,
@@ -130,7 +131,21 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView />
+                    <ProfileView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/favorite-movies"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <FavoriteMovies movies={movies} />
                   </Col>
                 )}
               </>

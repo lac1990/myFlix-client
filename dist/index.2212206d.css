@@ -20,6 +20,10 @@ img {
   font-family: Georgia, Times New Roman, Times, serif;
 }
 
+.movie-image {
+  size: 10px;
+}
+
 .userLogin {
   border: 2px solid #ccc;
   border-radius: 8px;
@@ -55,16 +59,6 @@ img {
   color: #000;
   margin-bottom: 20px;
   font-size: 24px;
-}
-
-.movie-container {
-  flex-direction: column;
-  height: 100%;
-  display: flex;
-}
-
-.movie-container button {
-  margin-top: auto;
 }
 
 :root {
