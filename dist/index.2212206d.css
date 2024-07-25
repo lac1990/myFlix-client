@@ -6,8 +6,13 @@
   padding: 4px 12px;
 }
 
-img {
-  width: 100%;
+.w-100 {
+  Float: left;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 30%;
+  margin-right: 20px;
+  padding: 5px;
 }
 
 .movie-title {
@@ -18,10 +23,6 @@ img {
 
 .movie-genre, .movie-director, .movie-description {
   font-family: Georgia, Times New Roman, Times, serif;
-}
-
-.movie-image {
-  size: 10px;
 }
 
 .userLogin {
