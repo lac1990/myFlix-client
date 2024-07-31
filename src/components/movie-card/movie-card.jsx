@@ -1,45 +1,65 @@
 import propTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-export const MovieCard = ({ movie }) => {
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
+export const MovieCard = ({ movie, updateAction }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const addFav = () => {
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.FavoriteMovie && user.FavoriteMovie.includes(movie._id)) {
+      setIsFavorite(true);
+    }
+  }, [movie._id]);
+
+  const handleAddToFav = (movieID) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
     fetch(
-      `https://movie-api-main-3.onrender.com/users/${user.Username}/${movie._id}`,
+      `https://movie-api-main-3.onrender.com/users/${user.Username}/movies/${movieID}`,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     )
       .then((response) => response.json())
-      .then((movies) => {
-        alert("Movie added");
+      .then((updatedUser) => {
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setIsFavorite(true);
+        alert("Movie Added");
       })
-      .catch((e) => console.log(e));
+      .catch((error) => console.error("Error", error));
   };
-  const removeFav = () => {
+
+  const handleRemoveFromFav = (movieID) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
     fetch(
-      `https://movie-api-main-3.onrender.com/users/${user.Username}/${movie._id}`,
+      `https://movie-api-main-3.onrender.com/users/${user.Username}/movies/${movieID}`,
       {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     )
       .then((response) => response.json())
-      .then((movies) => {
-        alert("Movie deleted");
+      .then((updatedUser) => {
+        updateAction(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setIsFavorite(false);
+        alert("Movie Removed");
       })
-      .catch((e) => console.log(e));
+      .catch((error) => console.error("Error", error));
   };
+
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} className="card-img" />
@@ -51,10 +71,23 @@ export const MovieCard = ({ movie }) => {
               Open
             </Button>
           </Link>
-          <br></br>
-          <br></br>
-          <Button onClick={addFav}>Add to Favorites</Button>
-          <Button onClick={removeFav}>Remove from Favorites</Button>
+          <div className="mt-auto">
+            {isFavorite ? (
+              <Button
+                className="btn btn-warning"
+                onClick={() => handleRemoveFromFav(movie._id)}
+              >
+                Remove from Favorites
+              </Button>
+            ) : (
+              <Button
+                className="btn back-button"
+                onClick={() => handleAddToFav(movie._id)}
+              >
+                Add to Favorites
+              </Button>
+            )}
+          </div>
         </div>
       </Card.Body>
     </Card>

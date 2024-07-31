@@ -5,7 +5,6 @@ import { LoginView } from "../Login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { FavoriteMovies } from "../favorite-movies/favorite-movies";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -14,35 +13,12 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
 
-  const handleUpdate = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [Username]: value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("https://movie-api-main-3.onrender.com/users", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json())
-      .then((updatedUser) => {
-        setUser(updatedUser);
-        alert("User information updated successfully!");
-      })
-      .catch((error) =>
-        console.error("Error updating user information:", error)
-      );
-  };
-
   useEffect(() => {
     fetch("https://movie-api-main-3.onrender.com/movies")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
-          console.log(movies);
+          console.log(movie);
           return {
             _id: movie._id,
             ImagePath: movie.ImagePath,
@@ -138,21 +114,7 @@ export const MainView = () => {
               </>
             }
           />
-          <Route
-            path="/favorite-movies"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <Col md={8}>
-                    <FavoriteMovies movies={movies} />
-                  </Col>
-                )}
-              </>
-            }
-          />
-
+        
           <Route
             path="/"
             element={

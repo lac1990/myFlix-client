@@ -1,10 +1,9 @@
-.movie-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.profile-card {
+  border: 3px solid DarkSlateGray;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
-.movie-container button {
-  margin-top: auto;
-  /* Align button to the bottom */
+.back-button {
+  margin-top: 1rem;
 }
