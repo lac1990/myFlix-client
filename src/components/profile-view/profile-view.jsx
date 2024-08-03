@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import UserInfo from "./user-info";
 import FavoriteMovies from "./favorite-movies";
@@ -34,7 +33,7 @@ export const ProfileView = ({ movies }) => {
             Title: movie.Title,
           };
         });
-        (moviesFromApi);
+        moviesFromApi;
       });
   };
 
@@ -103,7 +102,6 @@ export const ProfileView = ({ movies }) => {
   };
 
   const handleDeregister = () => {
-
     fetch("https://movie-api-main-3.onrender.com/users/${user.Username}", {
       method: "DELETE",
       headers: {

@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-
 import "./movie-view.scss";
 
 export const MovieView = ({ movies }) => {
@@ -13,8 +12,8 @@ export const MovieView = ({ movies }) => {
       <div>
         <img className="w-100" src={movie.ImagePath} />
       </div>
-        <div className="movie-title" key={movie.Title}>
-          {movie.Title}
+      <div className="movie-title" key={movie.Title}>
+        {movie.Title}
       </div>
       <div>
         <div className="movie-description" key={movie.Description}>
