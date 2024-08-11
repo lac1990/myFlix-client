@@ -114,7 +114,7 @@ export const MainView = () => {
               </>
             }
           />
-        
+
           <Route
             path="/"
             element={

@@ -18,31 +18,31 @@ export const LoginView = ({ onLoggedIn }) => {
 
     fetch("https://movie-api-main-3.onrender.com/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        localStorage.setItem("user", JSON.stringify(response.user));
-        localStorage.setItem("token", response.token);
-        onLoggedIn(response.user, response.token);
-        onLoggedIn(username);
-      } else {
-        alert("Login failed");
-      }
-    });
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          localStorage.setItem("user", JSON.stringify(response.user));
+          localStorage.setItem("token", response.token);
+          onLoggedIn(response.user, response.token);
+          onLoggedIn(username);
+        } else {
+          alert("Login failed");
+        }
+      });
   };
 
   return (
     <Form onSubmit={handleSubmit} className="userLogin">
       <Form.Group controlId="formUsername" className="inputGroup">
-      <div>
+        <div>
           <h1 className="userLogin">User Login</h1>
         </div>
         <Form.Label>Username:</Form.Label>
         <Form.Control
-        className="loginForm"
+          className="loginForm"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -54,7 +54,7 @@ export const LoginView = ({ onLoggedIn }) => {
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
-        className="loginForm"
+          className="loginForm"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

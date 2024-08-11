@@ -4,9 +4,9 @@ import FavoriteMovies from "./favorite-movies";
 import { Row, Col, Container, Card, Form, Button } from "react-bootstrap";
 
 export const ProfileView = ({ movies }) => {
-  const localUser = JSON.parse(localStorage.getItem("user"));
+  const updatedUser = JSON.parse(localStorage.getItem("user"));
   const favMovies = movies.filter((movie) => {
-    return localUser.FavoriteMovies.includes(movie._id);
+    return updatedUser.FavoriteMovies.includes(movie._id);
   });
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ export const ProfileView = ({ movies }) => {
   const [token] = useState(storedToken ? storedToken : null);
 
   const updateFavMovies = (movieId) => {
-    favMovies(favMovies.filter((m) => m._id !== movieId));
+    favMovies(  FavoriteMovies.filter((m) => m._id !== movieId));
   };
 
   const fetchFavMovies = () => {
@@ -100,30 +100,27 @@ export const ProfileView = ({ movies }) => {
         console.error("Error updating user information:", error)
       );
   };
-
   const handleDeregister = () => {
-    fetch("https://movie-api-main-3.onrender.com/users/${user.Username}", {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer ${token}",
-      },
-    })
-      .then((response) => {
+    fetch(`https://moviesdb-6abb3284c2fb.herokuapp.com/users/${user.Username}`, 
+    {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        
+    }
+    ).then((response) => {
+        console.log(response);
         if (response.ok) {
-          // Remove user from localStorage
-          alert("Account deleted");
-          localStorage.clear();
-          window.location.reload();
-
-          console.log("${user.Username} was deleted.");
+            console.log("Account deleted successfully!");
+            onLoggedOut();
         } else {
-          throw new Error("Failed to deregister user");
+        alert("Failed to delete account!");
         }
-      })
-      .catch((error) => {
-        console.error("Error deregistering user:", error);
-      });
-  };
+    })
+}
+
 
   return (
     <Container>
@@ -179,6 +176,17 @@ export const ProfileView = ({ movies }) => {
                       placeholder="please enter your email address"
                     />
                   </Form.Group>
+                  <Form.Group controlId="formBirthday">
+                    <Form.Label>Birthday:</Form.Label>
+                    <Form.Control
+                      type="birthday"
+                      name="Birthday"
+                      onChange={(e) => handleUpdate(e)}
+                      required
+                      minLength="5"
+                      placeholder="1990-11-14"
+                    />
+                        </Form.Group>
                   <button
                     className="back-button"
                     style={{ cursor: "pointer" }}

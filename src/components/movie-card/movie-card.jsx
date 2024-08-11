@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export const MovieCard = ({ movie, updateAction }) => {
+export const MovieCard = ({ movie, setUser}) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -35,31 +35,29 @@ export const MovieCard = ({ movie, updateAction }) => {
       })
       .catch((error) => console.error("Error", error));
   };
-
   const handleRemoveFromFav = (movieID) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
 
     fetch(
       `https://movie-api-main-3.onrender.com/users/${user.Username}/movies/${movieID}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((updatedUser) => {
-        updateAction(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        setIsFavorite(false);
-        alert("Movie Removed");
-      })
-      .catch((error) => console.error("Error", error));
-  };
-
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((updatedUser) => {
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setIsFavorite(true);
+      alert("Movie deleted");
+    })
+    .catch((error) => console.error("Error", error));
+};
+    
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} className="card-img" />

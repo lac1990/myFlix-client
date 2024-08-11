@@ -1,39 +1,32 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
-import "./profile-view.scss";
+import propTypes from "prop-types";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function FavoriteMovies({ favoriteMovieList, updateFavMovies }) {
+export const FavoriteMovies = ({ favoriteMovieList, favMovies }) => {
+ 
   return (
-    <>
-      <Row>
-        <Col xs={12}>
-          <h2>Favorite Movies</h2>
-        </Col>
-      </Row>
-      <Row>
-        {favoriteMovieList.length === 0 ? (
-          <p>No favorite movies saved yet!</p>
-        ) : (
-          favoriteMovieList.map((movie) => (
-            <Col
-              xs={12}
-              sm={6}
-              lg={4}
-              key={movie._id}
-              className="movie-container"
-            >
-              <MovieCard
-                movie={movie}
-                updateAction={() => updateFavMovies(movie._id)}
-              />
-            </Col>
-          ))
-        )}
-      </Row>
-    </>
+    <div>
+      {favoriteMovieList.length === 0 ? (
+        <p>No favorite movies</p>
+      ) : (
+        favoriteMovieList.map((movie) => (
+          <Card key={movie._id} className="mb-3">
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
+
+              <Link to={`/movies/${movie._id}`}>
+                <Button variant="primary">Movie Info</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        ))
+      )}
+    </div>
   );
 };
 
-
+FavoriteMovies.prototype = {
+  FavoriteMovies: propTypes.array.isRequired
+};
 export default FavoriteMovies;
