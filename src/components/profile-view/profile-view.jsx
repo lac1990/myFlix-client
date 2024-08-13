@@ -7,7 +7,7 @@ import "./profile-view.scss";
 export const ProfileView = ({ movies }) => {
   const updatedUser = JSON.parse(localStorage.getItem("user"));
   const favMovies = movies.filter((movie) => {
-    return updatedUser.FavoriteMovies.include(movie._id);
+    return updatedUser.FavoriteMovies.includes(movie._id);
   });
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
