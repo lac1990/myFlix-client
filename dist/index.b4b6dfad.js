@@ -42974,7 +42974,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 36,
+                                        lineNumber: 35,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
