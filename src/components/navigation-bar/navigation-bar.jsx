@@ -3,7 +3,10 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onSearch, onLoggedOut }) => {
+  const handleSearchChange = (e) => {
+    onSearch(e.target.value);
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Container>
