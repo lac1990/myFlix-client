@@ -10,6 +10,19 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Brand as={Link} to="/">
           MyFlix
         </Navbar.Brand>
+        {/* Search bar on small screens */}
+        {user && (
+          <Form className="d-lg-none d-flex align-items-center ms-auto">
+            <Form.Control
+              type="search"
+              placeholder="Search movie"
+              className="me-2 custom-search"
+              aria-label="Search"
+              onChange={handleSearchChange}
+            />
+            <Button variant="outline-light">Search</Button>
+          </Form>
+        )}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
