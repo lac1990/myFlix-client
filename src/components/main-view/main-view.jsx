@@ -12,6 +12,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState(movies);
 
   useEffect(() => {
     fetch("https://movie-api-main-3.onrender.com/movies")
@@ -44,6 +46,14 @@ export const MainView = () => {
       })
       .catch((e) => console.log(e));
   }, []);
+
+  useEffect(() => {
+    setFilteredMovies(
+      movies.filter((movie) =>
+        movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, movies]);
 
   return (
     <BrowserRouter>
@@ -96,6 +106,35 @@ export const MainView = () => {
                   <Col md={8}>
                     <MovieView movies={movies} />
                   </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col style={{ textAlign: "center" }}>
+                    Just one breath away...
+                    {/*   <Spinner animation="border" variant="danger" /> */}
+                  </Col>
+                ) : (
+                  <>
+                    <Row>
+                      {filteredMovies.map((movie) => (
+                        <Col className="mb-5" key={movie._id} md={6} lg={3}>
+                          <MovieCard
+                            key={movie._id}
+                            movie={movie}
+                            updateAction={setUser}
+                          />
+                        </Col>
+                      ))}
+                    </Row>
+                  </>
                 )}
               </>
             }
