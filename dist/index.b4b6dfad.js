@@ -42976,10 +42976,10 @@ const NavigationBar = ({ user, onSearch, onLoggedOut })=>{
                     lineNumber: 13,
                     columnNumber: 9
                 }, undefined),
-                user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Form, {
+                user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
                     className: "d-lg-none d-flex align-items-center ms-auto",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Form.Control, {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                             type: "search",
                             placeholder: "Search movie",
                             className: "me-2 custom-search",
