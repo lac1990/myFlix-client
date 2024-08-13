@@ -103,7 +103,7 @@ export const ProfileView = ({ movies }) => {
   };
   const handleDeregister = () => {
     fetch(
-      `https://moviesdb-6abb3284c2fb.herokuapp.com/users/${user.Username}`,
+      `https://movie-api-main-3.onrender.com/users/${user.Username}`,
       {
         method: "DELETE",
         headers: {
