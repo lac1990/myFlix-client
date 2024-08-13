@@ -2,9 +2,9 @@ import React from "react";
 import propTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./favorite-movies.scss";
 
-export const FavoriteMovies = ({ favoriteMovieList, favMovies }) => {
- 
+export const FavoriteMovies = ({ favoriteMovieList }) => {
   return (
     <div>
       {favoriteMovieList.length === 0 ? (
@@ -13,10 +13,12 @@ export const FavoriteMovies = ({ favoriteMovieList, favMovies }) => {
         favoriteMovieList.map((movie) => (
           <Card key={movie._id} className="mb-3">
             <Card.Body>
-              <Card.Title>{movie.Title}</Card.Title>
+              <Card.Title className="mtitle1"> {movie.Title} </Card.Title>
 
               <Link to={`/movies/${movie._id}`}>
-                <Button variant="primary">Movie Info</Button>
+                <Button className="button-53" variant="primary">
+                  Movie Info
+                </Button>
               </Link>
             </Card.Body>
           </Card>
@@ -27,6 +29,6 @@ export const FavoriteMovies = ({ favoriteMovieList, favMovies }) => {
 };
 
 FavoriteMovies.prototype = {
-  FavoriteMovies: propTypes.array.isRequired
+  FavoriteMovies: propTypes.array.isRequired,
 };
 export default FavoriteMovies;

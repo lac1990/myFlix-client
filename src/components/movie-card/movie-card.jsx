@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export const MovieCard = ({ movie, setUser}) => {
+export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -41,23 +41,23 @@ export const MovieCard = ({ movie, setUser}) => {
 
     fetch(
       `https://movie-api-main-3.onrender.com/users/${user.Username}/movies/${movieID}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  )
-    .then((response) => response.json())
-    .then((updatedUser) => {
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setIsFavorite(true);
-      alert("Movie deleted");
-    })
-    .catch((error) => console.error("Error", error));
-};
-    
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((updatedUser) => {
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setIsFavorite(true);
+        alert("Movie deleted");
+      })
+      .catch((error) => console.error("Error", error));
+  };
+
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImagePath} className="card-img" />
@@ -72,14 +72,14 @@ export const MovieCard = ({ movie, setUser}) => {
           <div className="mt-auto">
             {isFavorite ? (
               <Button
-                className="btn btn-warning"
+                className="fave"
                 onClick={() => handleRemoveFromFav(movie._id)}
               >
                 Remove from Favorites
               </Button>
             ) : (
               <Button
-                className="btn back-button"
+                className="faveback"
                 onClick={() => handleAddToFav(movie._id)}
               >
                 Add to Favorites

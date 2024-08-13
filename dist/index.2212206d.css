@@ -62,6 +62,29 @@
   font-size: 24px;
 }
 
+.button-53 {
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.mtitle1 {
+  font-family: Teko, sans-serif;
+}
+
+.profile-form h-100 {
+  border: 3px solid #2f4f4f;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.back-button {
+  margin-top: 1rem;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12075,7 +12098,7 @@ textarea.form-control-lg {
 }
 
 .my-flix {
-  color: #4682b4;
+  color: #000306;
 }
 
 .justify-content-md-center {
@@ -12084,5 +12107,33 @@ textarea.form-control-lg {
   align-items: center;
   margin: 10px;
   display: flex;
+}
+
+.H-100 {
+  color: #f5f5f5;
+  background-color: #0a3157;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.fave {
+  color: #f5f5f5;
+  background-color: #0a3157;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.faveback {
+  color: #000;
+  background-color: #c7d8ea;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

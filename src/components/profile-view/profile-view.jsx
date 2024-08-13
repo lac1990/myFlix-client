@@ -3,6 +3,8 @@ import UserInfo from "./user-info";
 import FavoriteMovies from "./favorite-movies";
 import { Row, Col, Container, Card, Form, Button } from "react-bootstrap";
 
+import "./profile-view.scss";
+
 export const ProfileView = ({ movies }) => {
   const updatedUser = JSON.parse(localStorage.getItem("user"));
   const favMovies = movies.filter((movie) => {
@@ -18,7 +20,7 @@ export const ProfileView = ({ movies }) => {
   const [token] = useState(storedToken ? storedToken : null);
 
   const updateFavMovies = (movieId) => {
-    favMovies(  FavoriteMovies.filter((m) => m._id !== movieId));
+    favMovies(FavoriteMovies.filter((m) => m._id !== movieId));
   };
 
   const fetchFavMovies = () => {
@@ -101,26 +103,25 @@ export const ProfileView = ({ movies }) => {
       );
   };
   const handleDeregister = () => {
-    fetch(`https://moviesdb-6abb3284c2fb.herokuapp.com/users/${user.Username}`, 
-    {
+    fetch(
+      `https://moviesdb-6abb3284c2fb.herokuapp.com/users/${user.Username}`,
+      {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        
-    }
+      }
     ).then((response) => {
-        console.log(response);
-        if (response.ok) {
-            console.log("Account deleted successfully!");
-            onLoggedOut();
-        } else {
+      console.log(response);
+      if (response.ok) {
+        console.log("Account deleted successfully!");
+        onLoggedOut();
+      } else {
         alert("Failed to delete account!");
-        }
-    })
-}
-
+      }
+    });
+  };
 
   return (
     <Container>
@@ -186,7 +187,7 @@ export const ProfileView = ({ movies }) => {
                       minLength="5"
                       placeholder="1990-11-14"
                     />
-                        </Form.Group>
+                  </Form.Group>
                   <button
                     className="back-button"
                     style={{ cursor: "pointer" }}
