@@ -60,7 +60,6 @@ export const MainView = () => {
       <NavigationBar
         user={user}
         onSearch={(query) => setSearchQuery(query)}
-
         onLoggedOut={() => {
           setUser(null);
           localStorage.clear();
@@ -119,9 +118,7 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
-                  <Col style={{ textAlign: "right" }}>
-
-                  </Col>
+                  <Col style={{ textAlign: "right" }}></Col>
                 ) : (
                   <>
                     <Row>

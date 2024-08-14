@@ -3,7 +3,6 @@ import UserInfo from "./user-info";
 import FavoriteMovies from "./favorite-movies";
 import { Row, Col, Container, Card, Form, Button } from "react-bootstrap";
 
-import "./profile-view.scss";
 export const ProfileView = ({ movies }) => {
   const updatedUser = JSON.parse(localStorage.getItem("user"));
   const favMovies = movies.filter((movie) => {
@@ -103,7 +102,7 @@ export const ProfileView = ({ movies }) => {
   };
   const handleDeregister = () => {
     fetch(
-      `https://movie-api-main-3.onrender.com/users/${user.Username}`,
+      `https://moviesdb-6abb3284c2fb.herokuapp.com/users/${user.Username}`,
       {
         method: "DELETE",
         headers: {
